@@ -193,6 +193,7 @@ var (
 
 	globalDomainNames []string      // Root domains for virtual host style requests
 	globalDomainIPs   set.StringSet // Root domain IP address(s) for a distributed MinIO deployment
+	globalDomainDirect bool // Is in direct domain name mode for vhosts
 
 	globalListingTimeout   = newDynamicTimeout( /*30*/ 600*time.Second /*5*/, 600*time.Second) // timeout for listing related ops
 	globalObjectTimeout    = newDynamicTimeout( /*1*/ 10*time.Minute /*10*/, 600*time.Second)  // timeout for Object API related ops
