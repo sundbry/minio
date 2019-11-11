@@ -134,7 +134,7 @@ minio server /data
 
 ### Domain
 
-By default, MinIO supports path-style requests that are of the format http://mydomain.com/bucket/object. `MINIO_DOMAIN` environment variable is used to enable virtual-host-style requests. If the request `Host` header matches with `(.+).mydomain.com` then the matched pattern `$1` is used as bucket and the path is used as object. More information on path-style and virtual-host-style [here](http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAPI.html)
+By default, MinIO supports path-style requests that are of the format http://mydomain.com/bucket/object. `MINIO_DOMAIN` environment variable is used to enable virtual-host-style requests. If the request `Host` header matches with `(.+).mydomain.com` then the matched pattern `$1` is used as bucket and the path is used as object. Setting `MINIO_DOMAIN` to the special value `DIRECT` will put the server in direct domain mode, where the bucket name will be parsed from the complete `Host` header without any subdomain. More information on path-style and virtual-host-style [here](http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAPI.html)
 Example:
 
 ```sh
@@ -145,6 +145,12 @@ minio server /data
 For advanced use cases `MINIO_DOMAIN` environment variable supports multiple-domains with comma separated values.
 ```sh
 export MINIO_DOMAIN=sub1.mydomain.com,sub2.mydomain.com
+minio server /data
+```
+
+`MINIO_DOMAIN` in direct mode:
+```sh
+export MINIO_DOMAIN=DIRECT
 minio server /data
 ```
 
